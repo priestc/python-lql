@@ -1,5 +1,13 @@
 from setuptools import setup
 
+import sys
+
+if sys.version_info < (3 , 0):
+    REQUIRES = ['pyparsing>=1.5.7']
+else:
+    REQUIRES = ['pyparsing>=2.0.0']
+
+
 setup(
     name='python-lql',
     version='1.0.0',
@@ -19,5 +27,5 @@ setup(
         'License :: OSI Approved :: BSD License',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ],
-    install_requires=['pyparsing>=1.5.7'],
+    install_requires=REQUIRES,
 )
