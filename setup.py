@@ -3,7 +3,7 @@ from setuptools import setup
 import sys
 
 if sys.version_info < (3 , 0):
-    REQUIRES = ['pyparsing<=2.0.0']
+    REQUIRES = ['pyparsing<2.0.0']
 else:
     REQUIRES = ['pyparsing>=2.0.0']
 
