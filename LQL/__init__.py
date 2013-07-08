@@ -1,6 +1,6 @@
 from pyparsing import Word, alphanums, oneOf, Group, QuotedString, delimitedList
 
-class Parse(object):
+class Query(object):
     def __init__(self, as_string=None, as_list=None):
         self.as_list = as_list
         self.as_string = as_string

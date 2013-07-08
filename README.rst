@@ -3,6 +3,15 @@ python-lql
 
 Library Query Language parser and utilities for python.
 
+What is Library Query Language?
+-------------------------------
+
+LQL is a simple, declarative language for defining sets of files across nodes
+in the Library Net.
+
+If you wish to write an application on the Library Platform,
+you are going to need to use this library to parse queries between the two formats.
+
 Usage
 -----
 

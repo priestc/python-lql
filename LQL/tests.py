@@ -1,5 +1,5 @@
 import unittest
-from . import Parse
+from LQL import Query
 
 class LQLParseTest(unittest.TestCase):
     cases = [
@@ -33,9 +33,8 @@ class LQLParseTest(unittest.TestCase):
             # then back into a list again.
             recalculated_list = Parse(as_string=recalculated_string).as_list
             
+            # assert that they are the same.
             self.assertEquals(defined_list_query, recalculated_list)
 
 if __name__ == '__main__':
-    #unittest.main()
-    t=LQL.ParseTest()
-    t.test_parsing()
+    unittest.main()
