@@ -38,7 +38,8 @@ class Query(object):
 
             for sc in subclauses:
                 if ' ' in sc[2]:
-                    # therre is a space character in the 'value' space, add quote marks
+                    # there is a space character in the 'value' space,
+                    # wrap in quotation marks
                     sc[2] = '"%s"' % sc[2]
                 rendered = ' '.join(sc)
                 rendered_subclauses.append(rendered)
