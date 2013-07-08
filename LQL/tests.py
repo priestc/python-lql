@@ -37,5 +37,8 @@ class LQLParseTest(unittest.TestCase):
             # assert that they are the same.
             self.assertEquals(defined_list_query, recalculated_list)
 
+    def test_invalid_init(self):
+        self.assertRaises(ValueError, lambda: Query())
+
 if __name__ == '__main__':
     unittest.main()

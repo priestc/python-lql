@@ -18,12 +18,12 @@ class Query(object):
         self.as_list = as_list
         self.as_string = as_string
 
-        if not as_string:
+        if not as_list and not as_string:
+            raise ValueError("Must include either as_list or as_string")
+        elif not as_string:
             self.as_string = self._calc_string(as_list)
         elif not as_list:
             self.as_list = self._calc_list(as_string)
-        elif not as_list and not as_string:
-            raise ValueError("Must include either as_list or as_string")
 
     def _calc_string(self, as_list):
         """
