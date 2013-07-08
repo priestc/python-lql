@@ -22,20 +22,20 @@ class LQLParseTest(unittest.TestCase):
     ]
 
     def test_parsing(self):
-        for defined_string_query, defined_list_query in self.cases:
+        for defined_string_query, defined_ast_query in self.cases:
             #import debug
-            # runs _calc_list
+            # runs _calc_ast
             query = Query(as_string=defined_string_query)
-            calculated_list = query.as_list
+            calculated_ast = query.ast
 
-            # convert that list back into a string...
-            recalculated_string = Query(as_list=calculated_list).as_string
+            # convert that ast back into a string...
+            recalculated_string = Query(ast=calculated_ast).as_string
             
-            # then back into a list again.
-            recalculated_list = Query(as_string=recalculated_string).as_list
+            # then back into a ast again.
+            recalculated_ast = Query(as_string=recalculated_string).ast
             
             # assert that they are the same.
-            self.assertEquals(defined_list_query, recalculated_list)
+            self.assertEquals(defined_ast_query, recalculated_ast)
 
     def test_invalid_init(self):
         self.assertRaises(ValueError, lambda: Query())

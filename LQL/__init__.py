@@ -14,23 +14,23 @@ ALL_OPERATORS = [
 ]
 
 class Query(object):
-    def __init__(self, as_string=None, as_list=None):
-        self.as_list = as_list
+    def __init__(self, as_string=None, ast=None):
+        self.ast = ast
         self.as_string = as_string
 
-        if not as_list and not as_string:
-            raise ValueError("Must include either as_list or as_string")
+        if not ast and not as_string:
+            raise ValueError("Must include either ast or as_string")
         elif not as_string:
-            self.as_string = self._calc_string(as_list)
-        elif not as_list:
-            self.as_list = self._calc_list(as_string)
+            self.as_string = self._calc_string(ast)
+        elif not ast:
+            self.ast = self._calc_ast(as_string)
 
-    def _calc_string(self, as_list):
+    def _calc_string(self, ast):
         """
         Convert a list structure of LQL and convert it into a string.
         """
         clauses = []
-        for clause in as_list:
+        for clause in ast:
             ## each clause ('including, [double list])
             polarity = clause[0]
             subclauses = clause[1]
@@ -50,7 +50,7 @@ class Query(object):
 
         return ';'.join(clauses)
 
-    def _calc_list(self, as_string):
+    def _calc_ast(self, as_string):
         """
         Turn a string LQL query into a "list of lists" object for easier handling.
         """
