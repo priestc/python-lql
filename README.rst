@@ -12,6 +12,8 @@ in the Library Net.
 If you wish to write an application on the Library Platform,
 you are going to need to use this library to parse queries between the two formats.
 
+Think of LQL as a striped down version of SQL. LQL queries resemble SQL `WHERE` clauses.
+
 Usage
 -----
 
