@@ -1,3 +1,6 @@
+.. image:: https://travis-ci.org/priestc/python-lql.png?branch=master
+   :target: https://travis-ci.org/priestc/python-lql
+  
 python-lql
 ==========
 
