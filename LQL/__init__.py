@@ -1,5 +1,18 @@
 from pyparsing import Word, alphanums, oneOf, Group, QuotedString, delimitedList
 
+ALL_OPERATORS = [
+    'after',
+    'exact',
+    '=',
+    '==',
+    'matches',
+    'lessthan',
+    'greaterthan',
+    'after',
+    'before',
+    'is_present'
+]
+
 class Query(object):
     def __init__(self, as_string=None, as_list=None):
         self.as_list = as_list
@@ -10,7 +23,7 @@ class Query(object):
         elif not as_list:
             self.as_list = self._calc_list(as_string)
         elif not as_list and not as_string:
-            raise ValueError("Must include either list of string")
+            raise ValueError("Must include either as_list or as_string")
 
     def _calc_string(self, as_list):
         """
@@ -24,6 +37,9 @@ class Query(object):
             rendered_subclauses = []
 
             for sc in subclauses:
+                if ' ' in sc[2]:
+                    # therre is a space character in the 'value' space, add quote marks
+                    sc[2] = '"%s"' % sc[2]
                 rendered = ' '.join(sc)
                 rendered_subclauses.append(rendered)
 
@@ -37,9 +53,9 @@ class Query(object):
         """
         Turn a string LQL query into a "list of lists" object for easier handling.
         """
-        identifier = Word("_"+"."+alphanums)
+        identifier = Word("/_.*"+alphanums)
         polarity = oneOf("including excluding", caseless=True)
-        operator = oneOf("after exact = == matches lessthan greaterthan after before is_present", caseless=True)
+        operator = oneOf(" ".join(ALL_OPERATORS), caseless=True)
         value = QuotedString("'") | QuotedString('"') | identifier
         key = identifier
 
